@@ -1,0 +1,409 @@
+@charset "utf-8";
+/* CSS Document */
+
+/* UTILITY CLASSES */
+
+.clearfix::after {
+	
+	clear: both;
+	
+}
+
+.clear {
+	
+	clear: both;
+	
+}
+
+/* MENU BAR */
+div.menubar {
+	
+	background-color: #e3dfcc;
+	border-top: 1px solid #b1b1b1;
+	height: 50px; /*guesstimate*/
+	
+}
+
+div.menubar_container,
+div.footer_items_container {
+	
+	padding: 0 20px;
+	box-sizing: border-box;
+	
+}
+
+div.menubar_container,
+div.titlebar,
+div.footer_items_container {
+	
+	width: 980px;
+	max-width: 100%;
+	margin: 0 auto;
+	
+}
+
+div.FH_logo {
+	
+	float:left;
+	padding: 4px 0;
+	
+}
+
+div.menu_container {
+	
+	float:right;
+	font-size: 14px;
+	font-size: 0.875rem;
+	padding: 16px 0;
+	padding: 1rem 0;
+	
+}
+
+div.menu_container nav div.navigation_link_container a {
+	
+	text-decoration: none;
+	color: black;
+	padding: 0 10px;
+	padding: 0 0.625rem;
+	
+}
+
+div.menu_container nav div.navigation_link_container a:hover { 
+
+	color:#666666; 
+	text-decoration: underline;
+
+}
+
+div.menu_container nav div.navigation_link_container {
+	
+	display: inline-block;
+	
+}
+
+div.menu_container nav div.navigation_link_container::after {
+	
+	content: "|";
+	text-decoration: none;
+	
+}
+
+div.menu_container nav div.navigation_link_container:first-child a {
+	
+	padding-left: 0;
+	
+}
+
+div.menu_container nav div.navigation_link_container:last-child a {
+	
+	padding-right: 0;
+	
+}
+
+div.menu_container nav div.navigation_link_container:last-child::after {
+	
+	content: "";
+	
+}
+
+/* TITLE BAR */
+
+div.titlebar_container {
+	
+	width: 700px;
+	max-width: 71.5%;
+	height: 32px;
+	margin-left: 20px;
+	
+}
+
+div.title_container {
+	
+	width: 575px;
+	max-width: 82%;
+	display: inline-block;
+	margin: 0;
+
+}
+
+div.title_container h1 {
+	
+	font-size: 28px;
+	font-size: 1.75rem;
+	line-height: 32px;
+	margin: 0;
+	padding: 0;
+	
+}
+
+div.controls_container {
+	
+	width: 124px;
+	max-width: 17%;
+	display: inline-block;
+	margin: 0;
+	height: 32px;
+	line-height: 32px;
+	font-size: 15px;
+	font-size: 0.9375rem;
+	
+}
+
+div.controls_container img.control_arrow {
+	
+
+	
+}
+
+div.controls_container span.controls_text {
+	
+	padding: 8px 0;
+	padding: 0.5rem 0;
+	
+}
+/* MAIN CONTENT CONTAINER */
+
+div.content_container {
+	
+	width: 980px;
+	max-width: 100%;
+	margin: 10px auto 0 auto;
+	
+}
+
+/* PRIMARY CONTENT AREA */
+
+div.primary_content_container {
+	
+	width: 700px;
+	max-width: 71.5%;
+	box-sizing: border-box;
+	float: left;
+	padding-left: 20px;
+	
+}
+
+div.primary_content_container div.slide_photo_container img {
+	
+	max-width: 100%;
+	
+}
+
+/* SECONDARY CONTENT AREA */
+
+div.secondary_content_container {
+	
+	width: 279px;
+	max-width: 28.5%;
+	box-sizing: border-box;
+	float: right;
+	padding-left: 20px;
+	padding-right: 20px;
+	
+}
+
+/* THUMBNAIL NAVIGATION */
+
+div.secondary_content_container div.thumbnail_navigation_container {
+	
+	height: 66px;
+	padding-bottom: 20px;
+	
+}
+
+div.secondary_content_container div.thumbnail_navigation_container > div {
+	
+	float: left;
+	
+}
+
+div.secondary_content_container div.thumbnail_navigation_container div.thumbnail_container div.thumbnail_image {
+	
+	float: left;
+	width: 66px;
+	height: 66px;
+	overflow: hidden;
+	padding-right: 1px;
+	
+}
+
+div.secondary_content_container div.thumbnail_navigation_container div.thumbnail_container div.thumbnail_image img {
+	
+	margin: 0;
+	padding: 0;
+	max-width: 100%;
+	
+}
+
+/* HEADLINE */
+
+div.secondary_content_container div.headline_container {
+	
+	padding-bottom: 6px;
+	padding-bottom: 0.375rem;
+	
+}
+
+div.secondary_content_container div.headline_container h2 {
+	
+	padding: 0;
+	margin: 0;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 18px;
+	font-size: 1.125rem;
+	color: black;
+	
+}
+
+/* CAPTION */
+
+div.secondary_content_container div.caption_container {
+	
+	padding-bottom: 4px;
+	padding-bottom: 0.25rem;	
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 15px;
+	font-size: 0.9375rem;
+	color: black;
+	
+}
+
+div.secondary_content_container div.caption_container :first-child {
+	
+	padding-top: 0;
+	margin-top: 0;
+	
+}
+
+div.secondary_content_container div.caption_container :last-child {
+	
+	padding-bottom: 0;
+	margin-bottom: 0;
+	
+}
+
+/* PHOTO CREDIT */
+
+div.secondary_content_container div.photo_credit_container {
+	
+	padding-bottom: 20px;
+	
+}
+
+div.secondary_content_container div.photo_credit_container span.photo_credit {
+	
+	font-size: 12px;
+	font-size: 0.75rem;
+	font-family: Arial, Helvetica, sans-serif;
+	font-style: italic;
+	color: black;
+	
+}
+
+/* RELATED CONTENT */
+
+div.secondary_content_container div.related_content_container h3.related_content_header {
+	
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	font-size: 0.625rem;
+	text-transform: uppercase;
+	color: black;
+	margin: 0;
+	padding: 0;
+	
+}
+
+div.secondary_content_container div.related_content_container div.related_content_item {
+	
+	margin-bottom: 20px;
+	
+}
+
+div.secondary_content_container div.related_content_container div.related_content_item:last-child {
+	
+	margin-bottom: 0;
+	
+}
+
+div.secondary_content_container div.related_content_container div.related_content_item a {
+	
+	text-decoration: none;
+	
+}
+
+div.secondary_content_container div.related_content_container div.related_content_item h4.related_content_item_title {
+	
+	color: black;
+	text-decoration: none;
+	font-size: 15px;
+	font-size: 0.9375rem;
+	margin: 0 0 4px 0;
+	margin: 0 0 0.25rem 0;
+	padding: 0;
+	
+}
+
+div.secondary_content_container div.related_content_container div.related_content_item h4.related_content_item_title:hover {
+	
+	text-decoration: underline;
+	
+}
+
+/* FOOTER */
+
+div.footer_container {
+	
+	min-height: 100px; /* guesstimate */
+	min-height: 6.25rem;
+	background-color: #2c2825;
+	padding-top: 12px;
+	padding-top: 0.75rem;
+	margin-top: 20px;
+	color: #f6f4ec;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-size: 0.75rem;
+	
+}
+
+div.footer_container div.footer_item {
+	
+	float: left;
+	
+}
+
+div.footer_container div.fred_hutch_description {
+	
+	width: 380px;
+	max-width: 38.75%;
+	margin-right: 20px;
+	
+}
+
+div.footer_container div.donate_button_container {
+	
+	width: 220px;
+	max-width: 22.4%;
+	margin-right: 20px;
+	text-align: center;
+	padding-top: 16px;
+	padding-top: 1rem;
+	
+}
+
+div.footer_container div.donate_button_container img.donate_button {
+	
+	display: block;
+	margin: 0 auto;
+	
+}
+
+div.footer_container div.social_icons_container {
+	
+	width: 300px;
+	max-width: 30.6%;
+	padding-top: 8px;
+	padding-top: 0.5rem;
+	
+}
