@@ -15,30 +15,34 @@
 	
 }
 
+/* GRID CLASSES */
+
+.outer_grid_container {
+	
+	margin-left: auto;
+	margin-right: auto;
+	padding-left: 10px;
+	padding-right: 10px;
+	box-sizing: border-box;
+	width: 980px;
+	max-width: 100%;
+	
+}
+
+.inner_grid_container {
+	
+	margin-left: 10px;
+	margin-right: 10px;
+	box-sizing: border-box;
+	
+}
+
 /* MENU BAR */
 div.menubar {
 	
 	background-color: #e3dfcc;
 	border-top: 1px solid #b1b1b1;
 	height: 50px; /*guesstimate*/
-	
-}
-
-div.menubar_container,
-div.footer_items_container {
-	
-	padding: 0 20px;
-	box-sizing: border-box;
-	
-}
-
-div.menubar_container,
-div.titlebar,
-div.footer_items_container {
-	
-	width: 980px;
-	max-width: 100%;
-	margin: 0 auto;
 	
 }
 
@@ -111,9 +115,8 @@ div.menu_container nav div.navigation_link_container:last-child::after {
 div.titlebar_container {
 	
 	width: 700px;
-	max-width: 71.5%;
+	max-width: 72.9%;
 	height: 32px;
-	margin-left: 20px;
 	
 }
 
@@ -146,6 +149,7 @@ div.controls_container {
 	line-height: 32px;
 	font-size: 15px;
 	font-size: 0.9375rem;
+	text-align: right;
 	
 }
 
@@ -165,9 +169,7 @@ div.controls_container span.controls_text {
 
 div.content_container {
 	
-	width: 980px;
-	max-width: 100%;
-	margin: 10px auto 0 auto;
+	margin-top: 10px;
 	
 }
 
@@ -176,10 +178,9 @@ div.content_container {
 div.primary_content_container {
 	
 	width: 700px;
-	max-width: 71.5%;
+	max-width: 72.9%;
 	box-sizing: border-box;
 	float: left;
-	padding-left: 20px;
 	
 }
 
@@ -193,12 +194,10 @@ div.primary_content_container div.slide_photo_container img {
 
 div.secondary_content_container {
 	
-	width: 279px;
-	max-width: 28.5%;
+	width: 220px;
+	max-width: 22.9%;
 	box-sizing: border-box;
-	float: right;
-	padding-left: 20px;
-	padding-right: 20px;
+	float: left;
 	
 }
 
@@ -206,8 +205,9 @@ div.secondary_content_container {
 
 div.secondary_content_container div.thumbnail_navigation_container {
 	
-	height: 66px;
-	padding-bottom: 20px;
+	height: 62px;
+	background-color: #000000;
+	margin-bottom: 20px;
 	
 }
 
@@ -376,16 +376,14 @@ div.footer_container div.footer_item {
 div.footer_container div.fred_hutch_description {
 	
 	width: 380px;
-	max-width: 38.75%;
-	margin-right: 20px;
+	max-width: 39.6%;
 	
 }
 
 div.footer_container div.donate_button_container {
 	
 	width: 220px;
-	max-width: 22.4%;
-	margin-right: 20px;
+	max-width: 23%;
 	text-align: center;
 	padding-top: 16px;
 	padding-top: 1rem;
@@ -402,7 +400,7 @@ div.footer_container div.donate_button_container img.donate_button {
 div.footer_container div.social_icons_container {
 	
 	width: 300px;
-	max-width: 30.6%;
+	max-width: 31.25%;
 	padding-top: 8px;
 	padding-top: 0.5rem;
 	
