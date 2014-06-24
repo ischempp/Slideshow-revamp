@@ -15,52 +15,30 @@
 	
 }
 
-.table {
-	
-	display: table;
-	
-}
-
-.table_row {
-	
-	display: table-row;
-	
-}
-
-.table_cell {
-	
-	display: table-cell;
-	
-}
-
-/* GRID CLASSES */
-
-.outer_grid_container {
-	
-	margin-left: auto;
-	margin-right: auto;
-	padding-left: 10px;
-	padding-right: 10px;
-	box-sizing: border-box;
-	width: 980px;
-	max-width: 100%;
-	
-}
-
-.inner_grid_container {
-	
-	margin-left: 10px;
-	margin-right: 10px;
-	box-sizing: border-box;
-	
-}
-
 /* MENU BAR */
 div.menubar {
 	
 	background-color: #e3dfcc;
 	border-top: 1px solid #b1b1b1;
 	height: 50px; /*guesstimate*/
+	
+}
+
+div.menubar_container,
+div.footer_items_container {
+	
+	padding: 0 20px;
+	box-sizing: border-box;
+	
+}
+
+div.menubar_container,
+div.titlebar,
+div.footer_items_container {
+	
+	width: 980px;
+	max-width: 100%;
+	margin: 0 auto;
 	
 }
 
@@ -133,18 +111,18 @@ div.menu_container nav div.navigation_link_container:last-child::after {
 div.titlebar_container {
 	
 	width: 700px;
-	max-width: 72.9%;
+	max-width: 71.5%;
 	height: 32px;
-	margin-top: 45px;
-	margin-top: 2.8125rem;
+	margin-left: 20px;
 	
 }
 
 div.title_container {
 	
-	width: 85%;
+	width: 575px;
+	max-width: 82%;
+	display: inline-block;
 	margin: 0;
-	vertical-align: top;
 
 }
 
@@ -160,27 +138,36 @@ div.title_container h1 {
 
 div.controls_container {
 	
-	width: 15%;
+	width: 124px;
+	max-width: 17%;
+	display: inline-block;
 	margin: 0;
+	height: 32px;
+	line-height: 32px;
 	font-size: 15px;
 	font-size: 0.9375rem;
-	text-align: right;
-	border-spacing: 14px 0px;
-	border-spacing: 0.875rem 0rem;
+	
+}
+
+div.controls_container img.control_arrow {
+	
+
 	
 }
 
 div.controls_container span.controls_text {
 	
-	vertical-align: middle;
-	text-align: center;
+	padding: 8px 0;
+	padding: 0.5rem 0;
 	
 }
 /* MAIN CONTENT CONTAINER */
 
 div.content_container {
 	
-	margin-top: 10px;
+	width: 980px;
+	max-width: 100%;
+	margin: 10px auto 0 auto;
 	
 }
 
@@ -189,9 +176,10 @@ div.content_container {
 div.primary_content_container {
 	
 	width: 700px;
-	max-width: 72.9%;
+	max-width: 71.5%;
 	box-sizing: border-box;
 	float: left;
+	padding-left: 20px;
 	
 }
 
@@ -205,10 +193,12 @@ div.primary_content_container div.slide_photo_container img {
 
 div.secondary_content_container {
 	
-	width: 220px;
-	max-width: 22.9%;
+	width: 279px;
+	max-width: 28.5%;
 	box-sizing: border-box;
-	float: left;
+	float: right;
+	padding-left: 20px;
+	padding-right: 20px;
 	
 }
 
@@ -228,36 +218,13 @@ div.secondary_content_container div.thumbnail_navigation_container > div {
 	
 }
 
-div.secondary_content_container div.thumbnail_navigation_container div.thumbnail_navigation_control {
-	
-	width: 15px;
-	padding: 0;
-	margin: 0;
-	
-}
-
-div.secondary_content_container div.thumbnail_navigation_container div.thumbnail_viewport {
-	
-	width: 188px;
-	overflow: hidden;
-	margin: 0;
-	padding: 0;
-	
-}
-
-div.secondary_content_container div.thumbnail_navigation_container div.thumbnail_viewport div.thumbnail_container {
-	
-	width: 200px;
-	
-}
-
-div.secondary_content_container div.thumbnail_navigation_container div.thumbnail_viewport div.thumbnail_container div.thumbnail_image {
+div.secondary_content_container div.thumbnail_navigation_container div.thumbnail_container div.thumbnail_image {
 	
 	float: left;
-	width: 62px;
-	height: 62px;
+	width: 66px;
+	height: 66px;
 	overflow: hidden;
-	margin-right: 1px;
+	padding-right: 1px;
 	
 }
 
@@ -410,14 +377,16 @@ div.footer_container div.footer_item {
 div.footer_container div.fred_hutch_description {
 	
 	width: 380px;
-	max-width: 39.6%;
+	max-width: 38.75%;
+	margin-right: 20px;
 	
 }
 
 div.footer_container div.donate_button_container {
 	
 	width: 220px;
-	max-width: 23%;
+	max-width: 22.4%;
+	margin-right: 20px;
 	text-align: center;
 	padding-top: 16px;
 	padding-top: 1rem;
@@ -434,7 +403,7 @@ div.footer_container div.donate_button_container img.donate_button {
 div.footer_container div.social_icons_container {
 	
 	width: 300px;
-	max-width: 31.25%;
+	max-width: 30.6%;
 	padding-top: 8px;
 	padding-top: 0.5rem;
 	
