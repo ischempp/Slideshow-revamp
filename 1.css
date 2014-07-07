@@ -132,17 +132,16 @@ div.menu_container nav div.navigation_link_container:last-child::after {
 
 div.titlebar_container {
 	
-	width: 700px;
-	max-width: 72.9%;
 	height: 32px;
 	margin-top: 45px;
 	margin-top: 2.8125rem;
+	box-sizing: border-box;
 	
 }
 
 div.title_container {
 	
-	width: 85%;
+	width: 60.71%;
 	margin: 0;
 	vertical-align: top;
 
@@ -160,10 +159,10 @@ div.title_container h1 {
 
 div.controls_container {
 	
-	width: 15%;
+	width: 10.72%;
 	margin: 0;
-	font-size: 15px;
-	font-size: 0.9375rem;
+	font-size: 18px;
+	font-size: 1.125rem;
 	text-align: right;
 	border-spacing: 14px 0px;
 	border-spacing: 0.875rem 0rem;
@@ -176,6 +175,22 @@ div.controls_container span.controls_text {
 	text-align: center;
 	
 }
+
+div.sharing_container {
+
+	width: 28.57%;
+	text-align: right;
+	margin: 0;
+	padding: 0 10px;
+	
+}
+
+div.sharing_container span.share_options {
+	
+	display: inline-block;
+	
+}
+
 /* MAIN CONTENT CONTAINER */
 
 div.content_container {
@@ -198,6 +213,9 @@ div.primary_content_container {
 div.primary_content_container div.slide_photo_container img {
 	
 	max-width: 100%;
+	border: 1px solid black;
+	display: block;
+	margin: 0 auto;
 	
 }
 
@@ -258,14 +276,35 @@ div.secondary_content_container div.thumbnail_navigation_container div.thumbnail
 	height: 62px;
 	overflow: hidden;
 	margin-right: 1px;
+	position: relative;
 	
 }
 
-div.secondary_content_container div.thumbnail_navigation_container div.thumbnail_container div.thumbnail_image img {
+div.secondary_content_container div.thumbnail_navigation_container div.thumbnail_viewport div.thumbnail_container div.thumbnail_image img {
 	
 	margin: 0;
 	padding: 0;
 	max-width: 100%;
+	
+}
+
+div.secondary_content_container div.thumbnail_navigation_container div.thumbnail_viewport div.thumbnail_container div.thumbnail_image div.thumbnail_filter {
+	
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 62px;
+	height: 62px;
+	z-index: 100;
+	background-color: #444444;
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)"; /* IE 8 */
+	opacity: 0.8;
+	
+}
+
+div.secondary_content_container div.thumbnail_navigation_container div.thumbnail_viewport div.thumbnail_container div.thumbnail_image.active_thumbnail div.thumbnail_filter {
+	
+	visibility: hidden;
 	
 }
 

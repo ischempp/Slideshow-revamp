@@ -4,6 +4,10 @@
 <meta charset="utf-8">
 <title>Untitled Document</title>
 
+<!--[if lt IE 9]>
+<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
 <link rel="stylesheet" href="1.css">
 </head>
 
@@ -52,9 +56,9 @@
 
 <!-- TITLE BAR -->
 
-	<div class="titlebar outer_grid_container">
+	<div class="titlebar">
   
-  	<div class="titlebar_container inner_grid_container table">
+  	<div class="titlebar_container outer_grid_container table">
     
     	<div class="table_row">
     
@@ -76,14 +80,44 @@
         
         </div>
         
+        <div class="sharing_container table_cell">
+        
+        	<!-- Lockerz Share BEGIN -->
+          <span class="share_options">
+            <span class="a2a_kit a2a_default_style">
+              <a class="a2a_button_facebook"></a>
+              <a class="a2a_button_twitter"></a>
+              <a class="a2a_button_google_plus"></a>          
+              <a class="a2a_button_email"></a>
+              <a class="a2a_button_printfriendly" onclick="window.print();return false;"></a>
+              <span class="a2a_divider"></span>
+              <a class="a2a_dd" href="http://www.addtoany.com/share_save">Share</a>
+            </span>
+          </span>
+          <script type="text/javascript">
+          <!--
+            a2a_config = {};
+            a2a_config.onclick=1;
+            a2a_config.show_title=0;
+            a2a_config.num_services=10;
+            /*a2a_config.linkname=document.title;
+            a2a_config.linkurl=location.href;*/
+            a2a_config.prioritize=["facebook","twitter","linkedin","digg","delicious","myspace","read_it_later","squidoo","technorati_favorites","care2_news"];
+            /*a2a_config.color_main="D7E5ED";*/
+            /*a2a_config.color_border="AECADB";*/
+            a2a_config.color_link_text="276a9f";
+            a2a_config.color_link_text_hover="348dd1";
+          //-->
+          </script>
+          <script type="text/javascript" src="//static.addtoany.com/menu/page.js"></script>
+          <!-- Lockerz Share END -->
+        
+        </div>
+        
       </div>
-      
-      <div class="clear"></div>
     
     </div>
     
-    <!-- NEED SOCIAL MEDIA STUFF HERE -->
-  
   </div>
   
 <!-- END TITLE BAR -->
@@ -98,7 +132,7 @@
     
       <div class="slide_photo_container">
       
-        <img src="img/140501-hutch-school-counselors-067.jpg">
+        <img src="img/140501-hutch-school-counselors-375.jpg">
       
       </div>
       
@@ -124,12 +158,15 @@
           
             <div class="thumbnail_image">
               <img class="thumbnail" src="img/thumbnail_01.jpg">
+              <div class="thumbnail_filter"></div>
+            </div>
+            <div class="thumbnail_image active_thumbnail">
+              <img class="thumbnail" src="img/thumbnail_01.jpg">
+              <div class="thumbnail_filter"></div>
             </div>
             <div class="thumbnail_image">
               <img class="thumbnail" src="img/thumbnail_01.jpg">
-            </div>
-            <div class="thumbnail_image">
-              <img class="thumbnail" src="img/thumbnail_01.jpg">
+              <div class="thumbnail_filter"></div>
             </div>
           
           </div>
