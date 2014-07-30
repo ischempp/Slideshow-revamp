@@ -1,0 +1,26 @@
+Things left to do on slideshow
+
+Assumptions:
+ * No more design changes
+ * No responsive design
+ * Works on all modern browsers
+ * Works but doesn't necessarily look perfect on IE8
+
+Things that are already done:
+ * Slide page creatable in CQ
+ * Slideshow page HTML complete in Dreamweaver
+ * Slideshow page CSS/JS mostly done in Dreamweaver
+ * Slide page logic complete in CQ
+
+Things that remain to be done:
+ * Add L/R arrows over main slide image
+ * Grey out navigation arrows when they are unclickable
+ * Final slide logic and HTML/CSS
+ * Create thumbnails from slide images using Sean's servlet
+ * Slideshow page template in CQ
+ * Slideshow page component in CQ
+ * Slideshow page logic in CQ
+ * Slideshow page dialog in CQ
+ * Move JS/CSS into CQ ClientLibs
+ * Browser testing: Chrome/Mozilla/Safari/IE9+
+ * Browser testing: IE8
