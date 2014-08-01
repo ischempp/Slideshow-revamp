@@ -11,16 +11,17 @@ Things that are already done:
  * Slideshow page HTML complete in Dreamweaver
  * Slideshow page CSS/JS mostly done in Dreamweaver
  * Slide page logic complete in CQ
+ * Slideshow page template in CQ
+ * Slideshow page dialog in CQ
+ * Move JS/CSS into CQ ClientLibs
 
 Things that remain to be done:
  * Add L/R arrows over main slide image
  * Grey out navigation arrows when they are unclickable
  * Final slide logic and HTML/CSS
  * Create thumbnails from slide images using Sean's servlet
- * Slideshow page template in CQ
  * Slideshow page component in CQ
  * Slideshow page logic in CQ
- * Slideshow page dialog in CQ
- * Move JS/CSS into CQ ClientLibs
  * Browser testing: Chrome/Mozilla/Safari/IE9+
  * Browser testing: IE8
+ * OPTIONAL: Teaser component for linking to slideshows
