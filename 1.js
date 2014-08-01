@@ -1,14 +1,38 @@
 var FH_fullpage_slideshow = (function(FH_fullpage_slideshow, $) {
 	
+	/* CONFIGURATION VARIABLES */
+
+	/* The selector of the DOM element that holds the number we want to update when slides change */
+	var COUNTER_SELECTOR = "span#current_slide";
+	/* The selector of the DOM element that holds the total number of slides */
+	var COUNTER_TOTAL_SELECTOR = "span#total_slides";
+	/* The selector of the thumbnail container */
+	var THUMBNAIL_CONTAINER_SELECTOR = "div.thumbnail_navigation_container div.thumbnail_container";
+	/* Everything that, when clicked, advances the slideshow */
+	var SLIDE_ADVANCERS = $("img#right_arrow, div#right_slide_control");
+	/* Everything that, when clicked, regresses the slideshow */
+	var	SLIDE_REGRESSORS = $("img#left_arrow, div#left_slide_control");
+	/* Everything that, when clicked, advances the thumbnails */
+	var THUMBNAIL_ADVANCERS = $("img#thumbnail_right_arrow");
+	/* Everything that, when clicked, regresses the thumbnails */
+	var	THUMBNAIL_REGRESSORS = $("img#thumbnail_left_arrow");
+	/* The name of the class attribute on the slide that should be shown */
+	var ACTIVE_SLIDE_CLASSNAME = "active";
+	/* The name of the class attribute on the thumbnail that should be highlighted */
+	var ACTIVE_THUMBNAIL_CLASSNAME = "active_thumbnail";
+	/* The number of pixels wide a thumbnail plus its right margin equals */
+	var THUMBNAIL_ANIMATION_DISTANCE = 63;
+	
 	/* PRIVATE VARIABLES */
 	var theSlidePhotos = $("div.slide_photos_container div.slide_photo"),
+		totalSlides = theSlidePhotos.size(),
 		theSlideInformations = $("div.slide_information_container div.slide_information"),
-		theSlideAdvancers = $("img#right_arrow, div.slide_photo"),
-		theSlideRegressors = $("img#left_arrow");
+		theThumbnails = $("div.thumbnail_container div.thumbnail_image"),
+		totalThumbnails = theThumbnails.size();
 		
 	/* PUBLIC VARIABLES */
 	FH_fullpage_slideshow.currentSlide = 1;
-	FH_fullpage_slideshow.totalSlides = theSlidePhotos.size();
+	FH_fullpage_slideshow.activeThumbnail = 1;
 	
 	/* PRIVATE METHODS */
 	
@@ -18,12 +42,19 @@ var FH_fullpage_slideshow = (function(FH_fullpage_slideshow, $) {
 	 
 	var updateSlideCounter = function() {
 		
-		/* This is the id attribute of the span that holds the number we want to update */
-		var counterSpanID = "current_slide";
+		$(COUNTER_SELECTOR).html(FH_fullpage_slideshow.currentSlide);
 		
-		$("span#" + counterSpanID).html(FH_fullpage_slideshow.currentSlide);
+	};
+	
+	var changeActiveSlide = function(slideNumber) {
 		
-	}
+		theSlidePhotos.removeClass(ACTIVE_SLIDE_CLASSNAME);
+		theSlidePhotos.eq(slideNumber).addClass(ACTIVE_SLIDE_CLASSNAME);
+			
+		theSlideInformations.removeClass(ACTIVE_SLIDE_CLASSNAME);
+		theSlideInformations.eq(slideNumber).addClass(ACTIVE_SLIDE_CLASSNAME);
+		
+	};
 	
 	/* PUBLIC METHODS */
 	
@@ -33,71 +64,165 @@ var FH_fullpage_slideshow = (function(FH_fullpage_slideshow, $) {
 	 */
 	FH_fullpage_slideshow.advanceSlideshow = function(){
 		
-		console.log("Advancing Slideshow");
+//		console.log("Advancing Slideshow");
 		
-		if (FH_fullpage_slideshow.currentSlide === FH_fullpage_slideshow.totalSlides) {
+		if (FH_fullpage_slideshow.currentSlide === totalSlides) {
 			
 			/* TODO: add a displayFinalSlide function? Or just place final slide in slideshow. */
-			console.log("Attempted to advance beyond final slide");
+//			console.log("Attempted to advance beyond final slide");
 			return;
 			
 		} else {
 		
 			FH_fullpage_slideshow.currentSlide++;
-			theSlidePhotos.removeClass("active");
-			theSlidePhotos.eq(FH_fullpage_slideshow.currentSlide - 1).addClass("active");
-			
-			theSlideInformations.removeClass("active");
-			theSlideInformations.eq(FH_fullpage_slideshow.currentSlide - 1).addClass("active");
-			
+			changeActiveSlide(FH_fullpage_slideshow.currentSlide - 1);
 			updateSlideCounter();
 			
 		}
 		
-	}
+	};
 	
 	/*
 	 * regressSlideshow acts identically to advanceSlideshow, only it check to see if there is a slide previous to the current slide
 	 */
 	FH_fullpage_slideshow.regressSlideshow = function(){
 		
-		console.log("Regressing Slideshow");
+//		console.log("Regressing Slideshow");
 		
 		if (FH_fullpage_slideshow.currentSlide === 1) {
 			
 			/* TODO: add a displayFinalSlide function? Or just place final slide in slideshow. */
-			console.log("Attempted to regress before first slide");
+//			console.log("Attempted to regress before first slide");
 			return;
 			
 		} else {
 		
 			FH_fullpage_slideshow.currentSlide--;
-			theSlidePhotos.removeClass("active");
-			theSlidePhotos.eq(FH_fullpage_slideshow.currentSlide - 1).addClass("active");
-			
-			theSlideInformations.removeClass("active");
-			theSlideInformations.eq(FH_fullpage_slideshow.currentSlide - 1).addClass("active");
-			
+			changeActiveSlide(FH_fullpage_slideshow.currentSlide - 1);	
 			updateSlideCounter();
 			
 		}
 		
+	};
+	
+	/* 
+	 * advanceThumbnails checks to see if there is a thumbnail after the current thumbnail and if there is, animates the thumbnail container
+	 * to the left, effectively advancing the thumbnails by one. It also changes which thumbnail has the active thumbnail class attribute.
+	 */
+	FH_fullpage_slideshow.advanceThumbnails = function() {
+		
+		if (FH_fullpage_slideshow.activeThumbnail === totalSlides) {
+			
+//			console.log("Attempted to advance thumbnails past final thumbnail");
+			return;
+			
+		} else {
+			
+			$(THUMBNAIL_CONTAINER_SELECTOR).animate({
+				left: "-="+THUMBNAIL_ANIMATION_DISTANCE
+			}, 500, function(){
+				//Callback function
+				FH_fullpage_slideshow.activeThumbnail++;
+				theThumbnails.removeClass(ACTIVE_THUMBNAIL_CLASSNAME);
+				theThumbnails.eq(FH_fullpage_slideshow.activeThumbnail).addClass(ACTIVE_THUMBNAIL_CLASSNAME);
+			});
+			
+		}
+		
+	};
+	
+	/*
+	 * regressThumbnails acts identically to advanceThumbnails, only it checks to see if there is a thumbnail previous to the current thumbnail.
+	 * It also animates the thumbnail container to the right instead of to the left.
+	 */
+	FH_fullpage_slideshow.regressThumbnails = function() {
+		
+		if (FH_fullpage_slideshow.activeThumbnail === 1) {
+			
+//			console.log("Attempted to regress thumbnails before first thumbnail");
+			return;
+			
+		} else {
+			
+			$(THUMBNAIL_CONTAINER_SELECTOR).animate({
+				left: "+="+THUMBNAIL_ANIMATION_DISTANCE
+			}, 500, function(){
+				//Callback function
+				FH_fullpage_slideshow.activeThumbnail--;
+				theThumbnails.removeClass(ACTIVE_THUMBNAIL_CLASSNAME);
+				theThumbnails.eq(FH_fullpage_slideshow.activeThumbnail).addClass(ACTIVE_THUMBNAIL_CLASSNAME);
+			});
+			
+		}
+		
+	};
+	
+	FH_fullpage_slideshow.displaySlideByNumber = function(slideNumber){
+		
+		if (slideNumber < 0 || slideNumber > totalSlides) {
+			
+//			console.log("Attempted to display an illegal slide: " + slideNumber);
+			return;
+			
+		} else {
+			
+			changeActiveSlide(slideNumber);
+			/* Update the currentSlide variable and display the correct number on the page */
+			FH_fullpage_slideshow.currentSlide = slideNumber + 1;
+			updateSlideCounter();
+			
+		}
+		
+	};
+	
+	FH_fullpage_slideshow.toggleSlideArrows = function() {
+		
+		var theArrows = $("div.primary_content_container div.slide_photos_container div.slide_control div.control_image");
+		
+		$(theArrows).toggleClass("visible");
+		
 	}
 	
-	console.log("Total slides: " + FH_fullpage_slideshow.totalSlides);
+//	console.log("Total slides: " + totalSlides);
 	
 	/* Initialize slide counter */
 	
-	$("span#total_slides").html(FH_fullpage_slideshow.totalSlides);
+	$(COUNTER_TOTAL_SELECTOR).html(totalSlides);
+	
+	/* Initialize thumbnail container width: (number of thumbnails * 62) + (number of thumbnails) px */
+	
+	$(THUMBNAIL_CONTAINER_SELECTOR).width( (totalThumbnails * 62 + totalThumbnails) + "px" );
 	
 	/* Add click events */
-	theSlideAdvancers.click(function(){ 
+	SLIDE_ADVANCERS.click(function(){ 
 		FH_fullpage_slideshow.advanceSlideshow();
 	});
 	
-	theSlideRegressors.click(function() {
+	SLIDE_REGRESSORS.click(function() {
 		FH_fullpage_slideshow.regressSlideshow();
 	});
+	
+	THUMBNAIL_ADVANCERS.click(function(){
+		FH_fullpage_slideshow.advanceThumbnails();
+	});
+	
+	THUMBNAIL_REGRESSORS.click(function(){
+		FH_fullpage_slideshow.regressThumbnails();
+	});
+	
+	theThumbnails.not(".thumbnail_placeholder").each(function(index) {
+		var that = this;
+		$(this).click(function() {
+			if ($(that).hasClass(ACTIVE_THUMBNAIL_CLASSNAME)) {
+				FH_fullpage_slideshow.displaySlideByNumber(index);
+			} else {
+//				console.log("Thumbnail not active");
+			}
+		});
+	});
+	
+	/* Add hover event to main slide image container to display forward/backward arrows */
+	$("div.primary_content_container div.slide_photos_container").hover(FH_fullpage_slideshow.toggleSlideArrows, FH_fullpage_slideshow.toggleSlideArrows);
 	
 	return FH_fullpage_slideshow;
 	

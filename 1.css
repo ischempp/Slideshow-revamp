@@ -153,7 +153,7 @@ div.title_container h1 {
 	font-size: 1.75rem;
 	line-height: 32px;
 	margin: 0;
-	padding: 0;
+	padding: 0 0 0 10px;
 	
 }
 
@@ -210,6 +210,12 @@ div.primary_content_container {
 	
 }
 
+div.primary_content_container div.slide_photos_container {
+	
+	position: relative;
+	
+}
+
 div.primary_content_container div.slide_photos_container div.slide_photo {
 	
 	display: none;
@@ -228,6 +234,65 @@ div.primary_content_container div.slide_photos_container div.slide_photo img {
 	border: 1px solid black;
 	display: block;
 	margin: 0 auto;
+	
+}
+
+div.primary_content_container div.slide_photos_container div.slide_control {
+	
+	position: absolute;
+	top: 0;
+	display: block;
+	height: 469px; /* To be changed via JS when necessary */
+	z-index: 5;
+	
+}
+
+div.primary_content_container div.slide_photos_container div#left_slide_control {
+	
+	left: 0;
+	width: 233.33px; /* To be changed by JS when necessary */
+	max-width: 33%;
+	
+}
+
+div.primary_content_container div.slide_photos_container div#right_slide_control {
+	
+	right: 0;
+	width: 466.66px; /* To be changed by JS when necessary */
+	max-width: 66%;
+	
+}
+
+div.primary_content_container div.slide_photos_container div.slide_control div.control_image {
+	
+	display: none;
+	width: 31px;
+	height: 52px;
+	position: absolute;
+	top: 208.5px; /* To be changed by JS when necessary; (Slide height / 2) - (control image height / 2) */
+	z-index: 5;
+	cursor: pointer;
+	text-indent: -10000px;
+	
+}
+
+div.primary_content_container div.slide_photos_container div.slide_control div.control_image.visible {
+	
+	display: block;
+	
+}
+
+div.primary_content_container div.slide_photos_container div.slide_control div#left_control_image {
+	
+	left: 0;
+	background-image: url(img/LeftGrayArrow.png);
+	
+}
+
+div.primary_content_container div.slide_photos_container div.slide_control div#right_control_image {
+	
+	right: 0;
+	background-image: url(img/RightGrayArrow.png);
 	
 }
 
@@ -278,6 +343,7 @@ div.secondary_content_container div.thumbnail_navigation_container div.thumbnail
 div.secondary_content_container div.thumbnail_navigation_container div.thumbnail_viewport div.thumbnail_container {
 	
 	width: 200px;
+	position: relative;
 	
 }
 
@@ -446,6 +512,12 @@ div.secondary_content_container div.slide_information_container div.slide_inform
 div.secondary_content_container div.slide_information_container div.slide_information div.related_content_container div.related_content_item h4.related_content_item_title:hover {
 	
 	text-decoration: underline;
+	
+}
+
+div.secondary_content_container div.slide_information_container div.slide_information div.related_content_container div.related_content_item img.related_content_item_photo {
+	
+	max-width: 120px;
 	
 }
 
