@@ -16,12 +16,16 @@ var FH_fullpage_slideshow = (function(FH_fullpage_slideshow, $) {
 	var THUMBNAIL_ADVANCERS = $("img#thumbnail_right_arrow");
 	/* Everything that, when clicked, regresses the thumbnails */
 	var	THUMBNAIL_REGRESSORS = $("img#thumbnail_left_arrow");
+	/* The arrows that appear over the slide on hover*/
+	var SLIDE_ARROWS = $("div.primary_content_container div.slide_photos_container div.slide_control div.control_image");
 	/* The name of the class attribute on the slide that should be shown */
 	var ACTIVE_SLIDE_CLASSNAME = "active";
 	/* The name of the class attribute on the thumbnail that should be highlighted */
 	var ACTIVE_THUMBNAIL_CLASSNAME = "active_thumbnail";
 	/* The number of pixels wide a thumbnail plus its right margin equals */
 	var THUMBNAIL_ANIMATION_DISTANCE = 63;
+	/* The height in pixels of the arrows that appear on hover over the main slide image */
+	var SLIDE_ARROW_HEIGHT = 52;
 	
 	/* PRIVATE VARIABLES */
 	var theSlidePhotos = $("div.slide_photos_container div.slide_photo"),
@@ -87,7 +91,7 @@ var FH_fullpage_slideshow = (function(FH_fullpage_slideshow, $) {
 	 * advanceSlideshow checks to see if there is a slide after the current slide and if there is, changes the current slide photo and slide information.
 	 * It then updates the public variable that holds the current slide number. It also calls the function to update the slide counter.
 	 */
-	FH_fullpage_slideshow.advanceSlideshow = function(){
+	FH_fullpage_slideshow.advanceSlideshow = function(el){
 		
 //		console.log("Advancing Slideshow");
 		
@@ -101,6 +105,10 @@ var FH_fullpage_slideshow = (function(FH_fullpage_slideshow, $) {
 		
 			FH_fullpage_slideshow.currentSlide++;
 			changeActiveSlide(FH_fullpage_slideshow.currentSlide - 1);
+			console.log("new top measurement: " + (theSlidePhotos.eq(FH_fullpage_slideshow.currentSlide - 1).innerHeight() / 2) - (SLIDE_ARROW_HEIGHT / 2) + "px");
+			SLIDE_ARROWS.css({
+				"top" : (theSlidePhotos.eq(FH_fullpage_slideshow.currentSlide - 1).innerHeight() / 2) - (SLIDE_ARROW_HEIGHT / 2) + "px"
+			});
 			updateSlideCounter();
 			changeActiveThumbnail(FH_fullpage_slideshow.currentSlide - 1);
 			
@@ -111,7 +119,7 @@ var FH_fullpage_slideshow = (function(FH_fullpage_slideshow, $) {
 	/*
 	 * regressSlideshow acts identically to advanceSlideshow, only it check to see if there is a slide previous to the current slide
 	 */
-	FH_fullpage_slideshow.regressSlideshow = function(){
+	FH_fullpage_slideshow.regressSlideshow = function(el){
 		
 //		console.log("Regressing Slideshow");
 		
@@ -124,6 +132,9 @@ var FH_fullpage_slideshow = (function(FH_fullpage_slideshow, $) {
 		
 			FH_fullpage_slideshow.currentSlide--;
 			changeActiveSlide(FH_fullpage_slideshow.currentSlide - 1);	
+			SLIDE_ARROWS.css({
+				"top" : (theSlidePhotos.eq(FH_fullpage_slideshow.currentSlide - 1).innerHeight() / 2) - (SLIDE_ARROW_HEIGHT / 2) + "px"
+			});		
 			updateSlideCounter();
 			changeActiveThumbnail(FH_fullpage_slideshow.currentSlide - 1);
 			
@@ -203,9 +214,7 @@ var FH_fullpage_slideshow = (function(FH_fullpage_slideshow, $) {
 	
 	FH_fullpage_slideshow.toggleSlideArrows = function() {
 		
-		var theArrows = $("div.primary_content_container div.slide_photos_container div.slide_control div.control_image");
-		
-		$(theArrows).toggleClass("visible");
+		SLIDE_ARROWS.toggleClass("visible");
 		
 	}
 	
@@ -221,11 +230,11 @@ var FH_fullpage_slideshow = (function(FH_fullpage_slideshow, $) {
 	
 	/* Add click events */
 	SLIDE_ADVANCERS.click(function(){ 
-		FH_fullpage_slideshow.advanceSlideshow();
+		FH_fullpage_slideshow.advanceSlideshow(this);
 	});
 	
 	SLIDE_REGRESSORS.click(function() {
-		FH_fullpage_slideshow.regressSlideshow();
+		FH_fullpage_slideshow.regressSlideshow(this);
 	});
 	
 	THUMBNAIL_ADVANCERS.click(function(){
