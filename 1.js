@@ -26,6 +26,11 @@ var FH_fullpage_slideshow = (function(FH_fullpage_slideshow, $) {
 	var THUMBNAIL_ANIMATION_DISTANCE = 63;
 	/* The height in pixels of the arrows that appear on hover over the main slide image */
 	var SLIDE_ARROW_HEIGHT = 52;
+	/* The location of the images being used as navigation arrows in the titlebar */
+	var LEFT_ARROW_SRC = "img/left_arrow.png";
+	var LEFT_ARROW_DISABLED_SRC = "img/left_arrow_grey.png";
+	var RIGHT_ARROW_SRC = "img/right_arrow.png";
+	var RIGHT_ARROW_DISABLED_SRC = "img/right_arrow_grey.png";
 	
 	/* PRIVATE VARIABLES */
 	var theSlidePhotos = $("div.slide_photos_container div.slide_photo"),
@@ -104,13 +109,24 @@ var FH_fullpage_slideshow = (function(FH_fullpage_slideshow, $) {
 		} else {
 		
 			FH_fullpage_slideshow.currentSlide++;
+			
 			changeActiveSlide(FH_fullpage_slideshow.currentSlide - 1);
-			console.log("new top measurement: " + (theSlidePhotos.eq(FH_fullpage_slideshow.currentSlide - 1).innerHeight() / 2) - (SLIDE_ARROW_HEIGHT / 2) + "px");
 			SLIDE_ARROWS.css({
 				"top" : (theSlidePhotos.eq(FH_fullpage_slideshow.currentSlide - 1).innerHeight() / 2) - (SLIDE_ARROW_HEIGHT / 2) + "px"
 			});
 			updateSlideCounter();
+			
 			changeActiveThumbnail(FH_fullpage_slideshow.currentSlide - 1);
+			
+			if (FH_fullpage_slideshow.currentSlide === totalSlides) {
+				
+				$("img#right_arrow").attr("src", RIGHT_ARROW_DISABLED_SRC);
+				
+			} else if ($("img#left_arrow").attr("src") === LEFT_ARROW_DISABLED_SRC) {
+				
+				$("img#left_arrow").attr("src", LEFT_ARROW_SRC);
+				
+			}
 			
 		}
 		
@@ -137,6 +153,16 @@ var FH_fullpage_slideshow = (function(FH_fullpage_slideshow, $) {
 			});		
 			updateSlideCounter();
 			changeActiveThumbnail(FH_fullpage_slideshow.currentSlide - 1);
+			
+			if (FH_fullpage_slideshow.currentSlide === 1) {
+				
+				$("img#left_arrow").attr("src", LEFT_ARROW_DISABLED_SRC);
+				
+			} else if ($("img#right_arrow").attr("src") === RIGHT_ARROW_DISABLED_SRC) {
+				
+				$("img#right_arrow").attr("src", RIGHT_ARROW_SRC);
+				
+			}
 			
 		}
 		
@@ -206,7 +232,32 @@ var FH_fullpage_slideshow = (function(FH_fullpage_slideshow, $) {
 			changeActiveSlide(slideNumber);
 			/* Update the currentSlide variable and display the correct number on the page */
 			FH_fullpage_slideshow.currentSlide = slideNumber + 1;
+			SLIDE_ARROWS.css({
+				"top" : (theSlidePhotos.eq(FH_fullpage_slideshow.currentSlide - 1).innerHeight() / 2) - (SLIDE_ARROW_HEIGHT / 2) + "px"
+			});		
 			updateSlideCounter();
+			
+			if ($("img#right_arrow").attr("src") === RIGHT_ARROW_DISABLED_SRC) {
+				
+				$("img#right_arrow").attr("src", RIGHT_ARROW_SRC);
+			
+			}
+			
+			if ($("img#left_arrow").attr("src") === LEFT_ARROW_DISABLED_SRC) {
+			
+				$("img#left_arrow").attr("src", LEFT_ARROW_SRC);
+							
+			}
+			
+			if (FH_fullpage_slideshow.currentSlide === 1) {
+				
+				$("img#left_arrow").attr("src", LEFT_ARROW_DISABLED_SRC);
+				
+			} else if (FH_fullpage_slideshow.currentSlide === totalSlides) {
+				
+				$("img#right_arrow").attr("src", RIGHT_ARROW_DISABLED_SRC);
+			
+			} 
 			
 		}
 		
