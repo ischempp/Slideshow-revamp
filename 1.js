@@ -56,6 +56,31 @@ var FH_fullpage_slideshow = (function(FH_fullpage_slideshow, $) {
 		
 	};
 	
+	var changeActiveThumbnail = function(slideNumber) {
+		
+		if (slideNumber < 0 || slideNumber > totalSlides) {
+			
+			console.log("Attempted to display an illegal thumbnail: " + slideNumber);
+			return;
+			
+		} else {
+			
+			var thumbnailDifference = (slideNumber + 1) - FH_fullpage_slideshow.activeThumbnail,
+		    amountToAnimate = thumbnailDifference * THUMBNAIL_ANIMATION_DISTANCE;
+				
+			$(THUMBNAIL_CONTAINER_SELECTOR).animate({
+				left: "-="+amountToAnimate
+			}, 500, function(){
+				//Callback function
+				FH_fullpage_slideshow.activeThumbnail = slideNumber + 1;
+				theThumbnails.removeClass(ACTIVE_THUMBNAIL_CLASSNAME);
+				theThumbnails.eq(FH_fullpage_slideshow.activeThumbnail).addClass(ACTIVE_THUMBNAIL_CLASSNAME);
+			});
+			
+		}
+		
+	};
+	
 	/* PUBLIC METHODS */
 	
 	/* 
@@ -77,6 +102,7 @@ var FH_fullpage_slideshow = (function(FH_fullpage_slideshow, $) {
 			FH_fullpage_slideshow.currentSlide++;
 			changeActiveSlide(FH_fullpage_slideshow.currentSlide - 1);
 			updateSlideCounter();
+			changeActiveThumbnail(FH_fullpage_slideshow.currentSlide - 1);
 			
 		}
 		
@@ -91,7 +117,6 @@ var FH_fullpage_slideshow = (function(FH_fullpage_slideshow, $) {
 		
 		if (FH_fullpage_slideshow.currentSlide === 1) {
 			
-			/* TODO: add a displayFinalSlide function? Or just place final slide in slideshow. */
 //			console.log("Attempted to regress before first slide");
 			return;
 			
@@ -100,6 +125,7 @@ var FH_fullpage_slideshow = (function(FH_fullpage_slideshow, $) {
 			FH_fullpage_slideshow.currentSlide--;
 			changeActiveSlide(FH_fullpage_slideshow.currentSlide - 1);	
 			updateSlideCounter();
+			changeActiveThumbnail(FH_fullpage_slideshow.currentSlide - 1);
 			
 		}
 		
