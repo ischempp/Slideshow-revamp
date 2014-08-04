@@ -16,11 +16,11 @@ Things that are already done:
  * Move JS/CSS into CQ ClientLibs
  * Add L/R arrows over main slide image
  * Grey out navigation arrows when they are unclickable
+ * Create thumbnails from slide images using Sean's servlet
 
 Things that remain to be done:
  
  * Final slide logic and HTML/CSS
- * Create thumbnails from slide images using Sean's servlet
  * Slideshow page component in CQ
  * Slideshow page logic in CQ
  * Browser testing: Chrome/Mozilla/Safari/IE9+

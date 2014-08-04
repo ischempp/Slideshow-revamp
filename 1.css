@@ -169,6 +169,18 @@ div.controls_container {
 	
 }
 
+div.controls_container img.control_arrow {
+	
+	cursor: pointer;
+	
+}
+
+div.controls_container img.control_arrow.disabled {
+	
+	cursor: default;
+	
+}
+
 div.controls_container span.controls_text {
 	
 	vertical-align: middle;
@@ -328,6 +340,12 @@ div.secondary_content_container div.thumbnail_navigation_container div.thumbnail
 	width: 15px;
 	padding: 0;
 	margin: 0;
+	
+}
+
+div.secondary_content_container div.thumbnail_navigation_container div.thumbnail_navigation_control img {
+	
+	cursor: pointer;
 	
 }
 

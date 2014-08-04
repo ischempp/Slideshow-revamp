@@ -120,11 +120,13 @@ var FH_fullpage_slideshow = (function(FH_fullpage_slideshow, $) {
 			
 			if (FH_fullpage_slideshow.currentSlide === totalSlides) {
 				
-				$("img#right_arrow").attr("src", RIGHT_ARROW_DISABLED_SRC);
+				$("img#right_arrow").attr("src", RIGHT_ARROW_DISABLED_SRC).toggleClass("disabled");
 				
-			} else if ($("img#left_arrow").attr("src") === LEFT_ARROW_DISABLED_SRC) {
+			} 
+			
+			if ($("img#left_arrow").attr("src") === LEFT_ARROW_DISABLED_SRC) {
 				
-				$("img#left_arrow").attr("src", LEFT_ARROW_SRC);
+				$("img#left_arrow").attr("src", LEFT_ARROW_SRC).toggleClass("disabled");
 				
 			}
 			
@@ -156,11 +158,13 @@ var FH_fullpage_slideshow = (function(FH_fullpage_slideshow, $) {
 			
 			if (FH_fullpage_slideshow.currentSlide === 1) {
 				
-				$("img#left_arrow").attr("src", LEFT_ARROW_DISABLED_SRC);
+				$("img#left_arrow").attr("src", LEFT_ARROW_DISABLED_SRC).toggleClass("disabled");
 				
-			} else if ($("img#right_arrow").attr("src") === RIGHT_ARROW_DISABLED_SRC) {
+			} 
+			
+			if ($("img#right_arrow").attr("src") === RIGHT_ARROW_DISABLED_SRC) {
 				
-				$("img#right_arrow").attr("src", RIGHT_ARROW_SRC);
+				$("img#right_arrow").attr("src", RIGHT_ARROW_SRC).toggleClass("disabled");
 				
 			}
 			
@@ -239,23 +243,23 @@ var FH_fullpage_slideshow = (function(FH_fullpage_slideshow, $) {
 			
 			if ($("img#right_arrow").attr("src") === RIGHT_ARROW_DISABLED_SRC) {
 				
-				$("img#right_arrow").attr("src", RIGHT_ARROW_SRC);
+				$("img#right_arrow").attr("src", RIGHT_ARROW_SRC).toggleClass("disabled");
 			
 			}
 			
 			if ($("img#left_arrow").attr("src") === LEFT_ARROW_DISABLED_SRC) {
 			
-				$("img#left_arrow").attr("src", LEFT_ARROW_SRC);
+				$("img#left_arrow").attr("src", LEFT_ARROW_SRC).toggleClass("disabled");
 							
 			}
 			
 			if (FH_fullpage_slideshow.currentSlide === 1) {
 				
-				$("img#left_arrow").attr("src", LEFT_ARROW_DISABLED_SRC);
+				$("img#left_arrow").attr("src", LEFT_ARROW_DISABLED_SRC).toggleClass("disabled");
 				
 			} else if (FH_fullpage_slideshow.currentSlide === totalSlides) {
 				
-				$("img#right_arrow").attr("src", RIGHT_ARROW_DISABLED_SRC);
+				$("img#right_arrow").attr("src", RIGHT_ARROW_DISABLED_SRC).toggleClass("disabled");
 			
 			} 
 			
