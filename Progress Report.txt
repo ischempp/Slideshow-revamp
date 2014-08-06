@@ -17,12 +17,28 @@ Things that are already done:
  * Add L/R arrows over main slide image
  * Grey out navigation arrows when they are unclickable
  * Create thumbnails from slide images using Sean's servlet
+ * Slideshow page component in CQ
+ * Slideshow page logic in CQ
 
 Things that remain to be done:
  
  * Final slide logic and HTML/CSS
- * Slideshow page component in CQ
- * Slideshow page logic in CQ
  * Browser testing: Chrome/Mozilla/Safari/IE9+
  * Browser testing: IE8
  * OPTIONAL: Teaser component for linking to slideshows
+
+Bugs:
+ 
+ * New Arrows
+ 
+
+
+
+Squashed Bugs:
+
+ * Escape HTML in caption field
+ * Internal Server Error if no slides under slideshow
+ * Thumbnail opacity to 0.6
+ * Titles in correct font
+ * Clicking on non-active thumbnail makes that thumbnail active and changes the slide.
+ * First slide arrow centering

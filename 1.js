@@ -111,9 +111,7 @@ var FH_fullpage_slideshow = (function(FH_fullpage_slideshow, $) {
 			FH_fullpage_slideshow.currentSlide++;
 			
 			changeActiveSlide(FH_fullpage_slideshow.currentSlide - 1);
-			SLIDE_ARROWS.css({
-				"top" : (theSlidePhotos.eq(FH_fullpage_slideshow.currentSlide - 1).innerHeight() / 2) - (SLIDE_ARROW_HEIGHT / 2) + "px"
-			});
+			FH_fullpage_slideshow.centerSlideArrows();
 			updateSlideCounter();
 			
 			changeActiveThumbnail(FH_fullpage_slideshow.currentSlide - 1);
@@ -150,9 +148,7 @@ var FH_fullpage_slideshow = (function(FH_fullpage_slideshow, $) {
 		
 			FH_fullpage_slideshow.currentSlide--;
 			changeActiveSlide(FH_fullpage_slideshow.currentSlide - 1);	
-			SLIDE_ARROWS.css({
-				"top" : (theSlidePhotos.eq(FH_fullpage_slideshow.currentSlide - 1).innerHeight() / 2) - (SLIDE_ARROW_HEIGHT / 2) + "px"
-			});		
+			FH_fullpage_slideshow.centerSlideArrows();		
 			updateSlideCounter();
 			changeActiveThumbnail(FH_fullpage_slideshow.currentSlide - 1);
 			
@@ -236,9 +232,7 @@ var FH_fullpage_slideshow = (function(FH_fullpage_slideshow, $) {
 			changeActiveSlide(slideNumber);
 			/* Update the currentSlide variable and display the correct number on the page */
 			FH_fullpage_slideshow.currentSlide = slideNumber + 1;
-			SLIDE_ARROWS.css({
-				"top" : (theSlidePhotos.eq(FH_fullpage_slideshow.currentSlide - 1).innerHeight() / 2) - (SLIDE_ARROW_HEIGHT / 2) + "px"
-			});		
+			FH_fullpage_slideshow.centerSlideArrows();		
 			updateSlideCounter();
 			
 			if ($("img#right_arrow").attr("src") === RIGHT_ARROW_DISABLED_SRC) {
@@ -271,7 +265,31 @@ var FH_fullpage_slideshow = (function(FH_fullpage_slideshow, $) {
 		
 		SLIDE_ARROWS.toggleClass("visible");
 		
-	}
+	};
+	
+	FH_fullpage_slideshow.centerSlideArrows = function() {
+		
+		SLIDE_ARROWS.css({
+			"top" : (theSlidePhotos.eq(FH_fullpage_slideshow.currentSlide - 1).innerHeight() / 2) - (SLIDE_ARROW_HEIGHT / 2) + "px"
+		});
+		
+	};
+	
+	FH_fullpage_slideshow.activateThumbnail = function(i) {
+		
+		var animationDistance = (i - FH_fullpage_slideshow.activeThumbnail + 1) * THUMBNAIL_ANIMATION_DISTANCE;
+		
+		$(THUMBNAIL_CONTAINER_SELECTOR).animate({
+				left: "-="+animationDistance
+			}, 500, function(){
+				//Callback function
+				FH_fullpage_slideshow.activeThumbnail = i+1;
+				theThumbnails.removeClass(ACTIVE_THUMBNAIL_CLASSNAME);
+				theThumbnails.eq(FH_fullpage_slideshow.activeThumbnail).addClass(ACTIVE_THUMBNAIL_CLASSNAME);
+				FH_fullpage_slideshow.displaySlideByNumber(i);
+			});
+		
+	};
 	
 //	console.log("Total slides: " + totalSlides);
 	
@@ -303,16 +321,17 @@ var FH_fullpage_slideshow = (function(FH_fullpage_slideshow, $) {
 	theThumbnails.not(".thumbnail_placeholder").each(function(index) {
 		var that = this;
 		$(this).click(function() {
-			if ($(that).hasClass(ACTIVE_THUMBNAIL_CLASSNAME)) {
-				FH_fullpage_slideshow.displaySlideByNumber(index);
-			} else {
-//				console.log("Thumbnail not active");
-			}
+			console.log("Slide number " + (index + 1) + " clicked.");
+			FH_fullpage_slideshow.activateThumbnail(index);
 		});
 	});
 	
 	/* Add hover event to main slide image container to display forward/backward arrows */
 	$("div.primary_content_container div.slide_photos_container").hover(FH_fullpage_slideshow.toggleSlideArrows, FH_fullpage_slideshow.toggleSlideArrows);
+	/* Center the slide arrows after the window loads */
+	$(window).load(function() {
+		FH_fullpage_slideshow.centerSlideArrows();
+	});
 	
 	return FH_fullpage_slideshow;
 	

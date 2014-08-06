@@ -55,6 +55,14 @@
 	
 }
 
+/* FONTS */
+
+div.titlebar div.title_container h1 {
+	
+	font-family: 'franklin-gothic-urw-n5','franklin-gothic-urw','Franklin Gothic Medium',Arial,Sans-serif;
+	
+}
+
 /* MENU BAR */
 div.menubar {
 	
