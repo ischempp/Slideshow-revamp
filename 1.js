@@ -27,10 +27,10 @@ var FH_fullpage_slideshow = (function(FH_fullpage_slideshow, $) {
 	/* The height in pixels of the arrows that appear on hover over the main slide image */
 	var SLIDE_ARROW_HEIGHT = 52;
 	/* The location of the images being used as navigation arrows in the titlebar */
-	var LEFT_ARROW_SRC = "img/left_arrow.png";
-	var LEFT_ARROW_DISABLED_SRC = "img/left_arrow_grey.png";
-	var RIGHT_ARROW_SRC = "img/right_arrow.png";
-	var RIGHT_ARROW_DISABLED_SRC = "img/right_arrow_grey.png";
+	var LEFT_ARROW_SRC = "img/SLIDESHOW_BACK_ARROW_LG.png";
+	var LEFT_ARROW_DISABLED_SRC = "img/SLIDESHOW_BACK_ARROW_LG.png";
+	var RIGHT_ARROW_SRC = "img/SLIDESHOW_FORWARD_ARROW_LG.png";
+	var RIGHT_ARROW_DISABLED_SRC = "img/SLIDESHOW_FORWARD_ARROW_LG.png";
 	
 	/* PRIVATE VARIABLES */
 	var theSlidePhotos = $("div.slide_photos_container div.slide_photo"),
@@ -38,10 +38,13 @@ var FH_fullpage_slideshow = (function(FH_fullpage_slideshow, $) {
 		theSlideInformations = $("div.slide_information_container div.slide_information"),
 		theThumbnails = $("div.thumbnail_container div.thumbnail_image"),
 		totalThumbnails = theThumbnails.size();
+		theFinalSlide = $("div#final_slide");
+		theFinalSlideButtons = $("div#final_slide div.final_slide_button_container");
 		
 	/* PUBLIC VARIABLES */
 	FH_fullpage_slideshow.currentSlide = 1;
 	FH_fullpage_slideshow.activeThumbnail = 1;
+	FH_fullpage_slideshow.isFinalSlide = false;
 	
 	/* PRIVATE METHODS */
 	
@@ -96,15 +99,13 @@ var FH_fullpage_slideshow = (function(FH_fullpage_slideshow, $) {
 	 * advanceSlideshow checks to see if there is a slide after the current slide and if there is, changes the current slide photo and slide information.
 	 * It then updates the public variable that holds the current slide number. It also calls the function to update the slide counter.
 	 */
-	FH_fullpage_slideshow.advanceSlideshow = function(el){
+	FH_fullpage_slideshow.advanceSlideshow = function(){
 		
 //		console.log("Advancing Slideshow");
 		
 		if (FH_fullpage_slideshow.currentSlide === totalSlides) {
 			
-			/* TODO: add a displayFinalSlide function? Or just place final slide in slideshow. */
-//			console.log("Attempted to advance beyond final slide");
-			return;
+			FH_fullpage_slideshow.toggleFinalSlide();
 			
 		} else {
 		
@@ -135,7 +136,7 @@ var FH_fullpage_slideshow = (function(FH_fullpage_slideshow, $) {
 	/*
 	 * regressSlideshow acts identically to advanceSlideshow, only it check to see if there is a slide previous to the current slide
 	 */
-	FH_fullpage_slideshow.regressSlideshow = function(el){
+	FH_fullpage_slideshow.regressSlideshow = function(){
 		
 //		console.log("Regressing Slideshow");
 		
@@ -143,6 +144,10 @@ var FH_fullpage_slideshow = (function(FH_fullpage_slideshow, $) {
 			
 //			console.log("Attempted to regress before first slide");
 			return;
+			
+		} else if (theFinalSlide.css("display") !== "none") {
+			
+			FH_fullpage_slideshow.toggleFinalSlide();
 			
 		} else {
 		
@@ -263,7 +268,11 @@ var FH_fullpage_slideshow = (function(FH_fullpage_slideshow, $) {
 	
 	FH_fullpage_slideshow.toggleSlideArrows = function() {
 		
-		SLIDE_ARROWS.toggleClass("visible");
+		if (!FH_fullpage_slideshow.isFinalSlide) {
+		
+			SLIDE_ARROWS.toggleClass("visible");
+			
+		}
 		
 	};
 	
@@ -291,6 +300,43 @@ var FH_fullpage_slideshow = (function(FH_fullpage_slideshow, $) {
 		
 	};
 	
+	FH_fullpage_slideshow.toggleFinalSlide = function() {
+		
+		var lastSlide = theSlidePhotos.eq(FH_fullpage_slideshow.currentSlide - 1).find("img");
+		var photoHeight = lastSlide.outerHeight();
+		var photoWidth = lastSlide.outerWidth();		
+		var finalSlideDivs = $("div#final_slide, div#final_slide div.final_slide_shader");
+		
+		if (FH_fullpage_slideshow.isFinalSlide === false) {
+			
+			FH_fullpage_slideshow.isFinalSlide = true;
+			
+		} else {
+			
+			FH_fullpage_slideshow.isFinalSlide = false;
+			
+		}
+
+		/* Make the final_slide and final_slide_shader divs the same size as the photo behind them */
+		finalSlideDivs.css({
+			"width" : photoWidth,
+			"height" : photoHeight
+		});
+		
+		/* Fade in the final slide div */
+		theFinalSlide.fadeToggle();
+		
+		/*
+		 * Center the buttons vertically on the slide 
+		 * Have to do this after the fadeToggle so that buttonsHeight != 0 
+		 */
+		var buttonsHeight = theFinalSlideButtons.height();
+		theFinalSlideButtons.css({
+			"top" : (photoHeight - buttonsHeight) / 2 + "px"
+		});
+		
+	};
+	
 //	console.log("Total slides: " + totalSlides);
 	
 	/* Initialize slide counter */
@@ -303,11 +349,11 @@ var FH_fullpage_slideshow = (function(FH_fullpage_slideshow, $) {
 	
 	/* Add click events */
 	SLIDE_ADVANCERS.click(function(){ 
-		FH_fullpage_slideshow.advanceSlideshow(this);
+		FH_fullpage_slideshow.advanceSlideshow();
 	});
 	
 	SLIDE_REGRESSORS.click(function() {
-		FH_fullpage_slideshow.regressSlideshow(this);
+		FH_fullpage_slideshow.regressSlideshow();
 	});
 	
 	THUMBNAIL_ADVANCERS.click(function(){

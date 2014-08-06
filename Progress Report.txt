@@ -30,9 +30,7 @@ Things that remain to be done:
 Bugs:
  
  * New Arrows
- 
-
-
+ * Slides that are hidden in nav don't show up in the slideshow
 
 Squashed Bugs:
 
@@ -42,3 +40,4 @@ Squashed Bugs:
  * Titles in correct font
  * Clicking on non-active thumbnail makes that thumbnail active and changes the slide.
  * First slide arrow centering
+ * Adapt to new preskin
