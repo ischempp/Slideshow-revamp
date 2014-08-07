@@ -19,18 +19,18 @@ Things that are already done:
  * Create thumbnails from slide images using Sean's servlet
  * Slideshow page component in CQ
  * Slideshow page logic in CQ
+ * Final slide logic and HTML/CSS
 
 Things that remain to be done:
  
- * Final slide logic and HTML/CSS
+ * Facebook sharer on final slide button
+ * Remove next slideshow button if no next slideshow in CQ
  * Browser testing: Chrome/Mozilla/Safari/IE9+
  * Browser testing: IE8
  * OPTIONAL: Teaser component for linking to slideshows
 
 Bugs:
  
- * New Arrows
- * Slides that are hidden in nav don't show up in the slideshow
 
 Squashed Bugs:
 
@@ -41,3 +41,8 @@ Squashed Bugs:
  * Clicking on non-active thumbnail makes that thumbnail active and changes the slide.
  * First slide arrow centering
  * Adapt to new preskin
+ * New Arrows
+ * Double-clicking slide arrows overcompensates in thumbnail nav
+ * Slides that are hidden in nav don't show up in the slideshow
+ * Minimum height on slide content div
+ * toggle final slide on thumbnail click

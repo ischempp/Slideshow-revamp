@@ -219,6 +219,7 @@ div.sharing_container span.share_options {
 div.content_container {
 	
 	margin-top: 10px;
+	min-height: 469px;
 	
 }
 
@@ -268,6 +269,7 @@ div.primary_content_container div.slide_photos_container div#final_slide div.fin
 	
 	position: relative;
 	top: 0;
+	z-index: 10;
 	
 }
 

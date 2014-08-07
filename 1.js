@@ -28,18 +28,19 @@ var FH_fullpage_slideshow = (function(FH_fullpage_slideshow, $) {
 	var SLIDE_ARROW_HEIGHT = 52;
 	/* The location of the images being used as navigation arrows in the titlebar */
 	var LEFT_ARROW_SRC = "img/SLIDESHOW_BACK_ARROW_LG.png";
-	var LEFT_ARROW_DISABLED_SRC = "img/SLIDESHOW_BACK_ARROW_LG.png";
+	var LEFT_ARROW_DISABLED_SRC = "img/SLIDESHOW_BACK_ARROW_LG-GREY.png";
 	var RIGHT_ARROW_SRC = "img/SLIDESHOW_FORWARD_ARROW_LG.png";
-	var RIGHT_ARROW_DISABLED_SRC = "img/SLIDESHOW_FORWARD_ARROW_LG.png";
+	var RIGHT_ARROW_DISABLED_SRC = "img/SLIDESHOW_FORWARD_ARROW_LG-GREY.png";
 	
 	/* PRIVATE VARIABLES */
 	var theSlidePhotos = $("div.slide_photos_container div.slide_photo"),
 		totalSlides = theSlidePhotos.size(),
 		theSlideInformations = $("div.slide_information_container div.slide_information"),
 		theThumbnails = $("div.thumbnail_container div.thumbnail_image"),
-		totalThumbnails = theThumbnails.size();
-		theFinalSlide = $("div#final_slide");
-		theFinalSlideButtons = $("div#final_slide div.final_slide_button_container");
+		totalThumbnails = theThumbnails.size(),
+		theFinalSlide = $("div#final_slide"),
+		theFinalSlideButtons = $("div#final_slide div.final_slide_button_container"),
+		slideshowReplayButton = $("img#replay_slideshow_button");
 		
 	/* PUBLIC VARIABLES */
 	FH_fullpage_slideshow.currentSlide = 1;
@@ -72,7 +73,6 @@ var FH_fullpage_slideshow = (function(FH_fullpage_slideshow, $) {
 		
 		if (slideNumber < 0 || slideNumber > totalSlides) {
 			
-			console.log("Attempted to display an illegal thumbnail: " + slideNumber);
 			return;
 			
 		} else {
@@ -101,7 +101,12 @@ var FH_fullpage_slideshow = (function(FH_fullpage_slideshow, $) {
 	 */
 	FH_fullpage_slideshow.advanceSlideshow = function(){
 		
-//		console.log("Advancing Slideshow");
+		/* Don't allow advancing if thumbnails are animating */
+		if ($("div.thumbnail_container").filter(":animated").size() !== 0) {
+			
+			return;
+			
+		}
 		
 		if (FH_fullpage_slideshow.currentSlide === totalSlides) {
 			
@@ -116,12 +121,6 @@ var FH_fullpage_slideshow = (function(FH_fullpage_slideshow, $) {
 			updateSlideCounter();
 			
 			changeActiveThumbnail(FH_fullpage_slideshow.currentSlide - 1);
-			
-			if (FH_fullpage_slideshow.currentSlide === totalSlides) {
-				
-				$("img#right_arrow").attr("src", RIGHT_ARROW_DISABLED_SRC).toggleClass("disabled");
-				
-			} 
 			
 			if ($("img#left_arrow").attr("src") === LEFT_ARROW_DISABLED_SRC) {
 				
@@ -138,11 +137,9 @@ var FH_fullpage_slideshow = (function(FH_fullpage_slideshow, $) {
 	 */
 	FH_fullpage_slideshow.regressSlideshow = function(){
 		
-//		console.log("Regressing Slideshow");
-		
-		if (FH_fullpage_slideshow.currentSlide === 1) {
+		/* Don't allow regressing if thumbnails are animating or we are at the beginning of the slideshow */
+		if ($("div.thumbnail_container").filter(":animated").size() !== 0 || FH_fullpage_slideshow.currentSlide === 1) {
 			
-//			console.log("Attempted to regress before first slide");
 			return;
 			
 		} else if (theFinalSlide.css("display") !== "none") {
@@ -163,12 +160,6 @@ var FH_fullpage_slideshow = (function(FH_fullpage_slideshow, $) {
 				
 			} 
 			
-			if ($("img#right_arrow").attr("src") === RIGHT_ARROW_DISABLED_SRC) {
-				
-				$("img#right_arrow").attr("src", RIGHT_ARROW_SRC).toggleClass("disabled");
-				
-			}
-			
 		}
 		
 	};
@@ -179,9 +170,9 @@ var FH_fullpage_slideshow = (function(FH_fullpage_slideshow, $) {
 	 */
 	FH_fullpage_slideshow.advanceThumbnails = function() {
 		
-		if (FH_fullpage_slideshow.activeThumbnail === totalSlides) {
+		/* Don't allow advancing if we are already animating or at the end of the thumbnails */
+		if ($("div.thumbnail_container").filter(":animated").size() !== 0 || FH_fullpage_slideshow.activeThumbnail === totalSlides) {
 			
-//			console.log("Attempted to advance thumbnails past final thumbnail");
 			return;
 			
 		} else {
@@ -205,9 +196,9 @@ var FH_fullpage_slideshow = (function(FH_fullpage_slideshow, $) {
 	 */
 	FH_fullpage_slideshow.regressThumbnails = function() {
 		
-		if (FH_fullpage_slideshow.activeThumbnail === 1) {
+		/* Don't allow advancing if we are already animating or at the beginning of the thumbnails */
+		if ($("div.thumbnail_container").filter(":animated").size() !== 0 || FH_fullpage_slideshow.activeThumbnail === 1) {
 			
-//			console.log("Attempted to regress thumbnails before first thumbnail");
 			return;
 			
 		} else {
@@ -229,7 +220,6 @@ var FH_fullpage_slideshow = (function(FH_fullpage_slideshow, $) {
 		
 		if (slideNumber < 0 || slideNumber > totalSlides) {
 			
-//			console.log("Attempted to display an illegal slide: " + slideNumber);
 			return;
 			
 		} else {
@@ -286,6 +276,12 @@ var FH_fullpage_slideshow = (function(FH_fullpage_slideshow, $) {
 	
 	FH_fullpage_slideshow.activateThumbnail = function(i) {
 		
+		if (theFinalSlide.css("display") !== "none") {
+			
+			FH_fullpage_slideshow.toggleFinalSlide();
+			
+		}
+		
 		var animationDistance = (i - FH_fullpage_slideshow.activeThumbnail + 1) * THUMBNAIL_ANIMATION_DISTANCE;
 		
 		$(THUMBNAIL_CONTAINER_SELECTOR).animate({
@@ -310,10 +306,12 @@ var FH_fullpage_slideshow = (function(FH_fullpage_slideshow, $) {
 		if (FH_fullpage_slideshow.isFinalSlide === false) {
 			
 			FH_fullpage_slideshow.isFinalSlide = true;
+			$("img#right_arrow").attr("src", RIGHT_ARROW_DISABLED_SRC).toggleClass("disabled");
 			
 		} else {
 			
 			FH_fullpage_slideshow.isFinalSlide = false;
+			$("img#right_arrow").attr("src", RIGHT_ARROW_SRC).toggleClass("disabled");
 			
 		}
 
@@ -336,8 +334,6 @@ var FH_fullpage_slideshow = (function(FH_fullpage_slideshow, $) {
 		});
 		
 	};
-	
-//	console.log("Total slides: " + totalSlides);
 	
 	/* Initialize slide counter */
 	
@@ -367,9 +363,16 @@ var FH_fullpage_slideshow = (function(FH_fullpage_slideshow, $) {
 	theThumbnails.not(".thumbnail_placeholder").each(function(index) {
 		var that = this;
 		$(this).click(function() {
-			console.log("Slide number " + (index + 1) + " clicked.");
 			FH_fullpage_slideshow.activateThumbnail(index);
 		});
+	});
+	
+	/* Reset the slideshow if the replay button is clicked */
+	slideshowReplayButton.click(function() {
+		
+		FH_fullpage_slideshow.toggleFinalSlide();
+		FH_fullpage_slideshow.activateThumbnail(0);
+		
 	});
 	
 	/* Add hover event to main slide image container to display forward/backward arrows */
