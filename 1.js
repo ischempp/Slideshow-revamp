@@ -371,7 +371,11 @@ var FH_fullpage_slideshow = (function(FH_fullpage_slideshow, $) {
 	slideshowReplayButton.click(function() {
 		
 		FH_fullpage_slideshow.toggleFinalSlide();
-		FH_fullpage_slideshow.activateThumbnail(0);
+		if (document.getElementById("slideshow_thumbnail_navigation_container")) {
+			FH_fullpage_slideshow.activateThumbnail(0);
+		} else {
+			FH_fullpage_slideshow.displaySlideByNumber(0);
+		}
 		
 	});
 	

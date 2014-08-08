@@ -20,11 +20,11 @@ Things that are already done:
  * Slideshow page component in CQ
  * Slideshow page logic in CQ
  * Final slide logic and HTML/CSS
+ * Remove next slideshow button if no next slideshow in CQ
 
 Things that remain to be done:
  
  * Facebook sharer on final slide button
- * Remove next slideshow button if no next slideshow in CQ
  * Browser testing: Chrome/Mozilla/Safari/IE9+
  * Browser testing: IE8
  * OPTIONAL: Teaser component for linking to slideshows
